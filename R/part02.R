@@ -14,9 +14,11 @@ library(tidyverse)
 
 #Exercise 2
   #workingwith across() and everything()
+  #changes the datatype of all columns to characters
   mutate(storms, across(everything(), as.character))
   
   #using across() and where()
+  #changes the datatype of doubles to characters
   mutate(storms, across(where(is.double), as.character ))
 
 #Exercise 3
