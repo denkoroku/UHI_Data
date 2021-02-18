@@ -14,7 +14,7 @@ library(tidyverse)
   write_csv (braemar_data, "data/braemar.csv")
   
   #and reading it back in again
-  braemar2_data<- read_csv("data/braemar.csv")
+  braemar2_data <- read_csv("data/braemar.csv")
   braemar2_data
   
   #writing and reading storms data
@@ -31,17 +31,17 @@ library(tidyverse)
 #Exercise 3
   #From the storms.csv file, change the status column into a factor.
   storms4 <- read_csv("data/storms.csv")
-  storms4$status<-as_factor(storms4$status)
+  storms4$status <- as_factor(storms4$status)
   
   #Here are the levels.Are they in the correct order? (I don't know the correct order!)
     levels(storms4$status)
     
   #Use this variable with geom_bar()
-  ggplot(storms4, aes(x=status))+
+  ggplot(storms4, aes(x = status))+
     geom_bar()
     
   #Using fct_rev() to reverse the order of the factors.
-  ggplot(storms4, aes(x=fct_rev(status)))+
+  ggplot(storms4, aes(x = fct_rev(status)))+
     geom_bar()
     
 #Exercise 4
@@ -61,7 +61,7 @@ library(tidyverse)
     ggplot(marks_long, aes(x = student, y = mark, fill = subject))+
     geom_col()
     
-  #One chart per student
+  #One chart per student is maybe easier to read
       ggplot(marks_long, aes(x = subject, y = mark, fill = subject))+
       geom_col()+
       facet_wrap(vars(student))
