@@ -24,20 +24,28 @@ library(lubridate)
 #Exercise 3
   #clean and tidy the dataset
   
-  #save the dataset without asterisks
-  no_asteriks <- str_replace(nairn_data, across(everything(), "\\*", ""))
-  no_asteriks
+  #remove stars
+  nairn_clean_data <- mutate(nairn_data, across(where(is.character),
+                                    str_remove_all, pattern = "\\*"))%>%
+  
+  #remove dashes
+  mutate(across(where(is.character),str_replace,
+                                              pattern = "---",
+                                              replacement = NA_character_))%>%
+  
+  #remove spaces
+    mutate(across(where(is.character),str_remove_all,
+                  pattern = " "))
+                  
+  
+  #remove last column
+  nairn_clean_data <-select( nairn_clean_data,yyyy:`sun (hours)`)%>%
   
   #change chr datatype columns  to double
-  mutate(no_asteriks, across(where(is.character), as.double))
-  no_asteriks  
+  mutate(across(where(is.character),as.numeric))
   
-  #change x8 colum to "is_provisional"
-  rename(nairn_data, is_provisional = X8)
-    #change NA to false using replace_na()
-    replace_na(nairn_data$is_provisional, replace = FALSE)
-    #change provisional to TRUE
-    mutate(nairn_data$is_provisional, Provisional = TRUE)
+  nairn_clean_data
+
 
 #Exercise 4
   #Create a date column using the ymd()
