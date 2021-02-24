@@ -29,29 +29,28 @@ library(lubridate)
                                     str_remove_all, pattern = "\\*"))%>%
   
   #remove dashes
-  mutate(across(where(is.character),str_replace,
+  mutate(across(where(is.character), str_replace,
                                               pattern = "---",
                                               replacement = NA_character_))%>%
-  
+    
   #remove spaces
     mutate(across(where(is.character),str_remove_all,
                   pattern = " "))
                   
-  
   #remove last column
-  nairn_clean_data <-select( nairn_clean_data,yyyy:`sun (hours)`)%>%
+  nairn_clean_data <-select( nairn_clean_data, yyyy:`sun (hours)`)%>%
   
   #change chr datatype columns  to double
-  mutate(across(where(is.character),as.numeric))
+  mutate(across(where(is.character), as.numeric))
   
-  nairn_clean_data
-
-
+  
 #Exercise 4
   #Create a date column using the ymd()
-    
-  
+  nairn_clean_data%>%
+    mutate(date = make_date(yyyy, mm), .before = `tmin (degC)`)%>%
   
 #Exercise 5
   #plot the data over time to see if any trends can be established
+    ggplot(aes(x = date, y = `tmin (degC)`))+
+    geom_smooth()
   
