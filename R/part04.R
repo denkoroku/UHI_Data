@@ -1,5 +1,6 @@
 library(tidyverse)
 library(lubridate)
+library(patchwork)
 
 #Exercise 1
   #load the dataset
@@ -40,17 +41,28 @@ library(lubridate)
   #remove last column
   nairn_clean_data <-select( nairn_clean_data, yyyy:`sun (hours)`)%>%
   
-  #change chr datatype columns  to double
+  #change chr datatype columns to double
   mutate(across(where(is.character), as.numeric))
   
   
 #Exercise 4
   #Create a date column using the ymd()
-  nairn_clean_data%>%
-    mutate(date = make_date(yyyy, mm), .before = `tmin (degC)`)%>%
+    nairn2 <- mutate(nairn_clean_data,
+                   date = make_date(yyyy, mm),
+                   .before = `tmax (degC)`)
   
 #Exercise 5
   #plot the data over time to see if any trends can be established
-    ggplot(aes(x = date, y = `tmin (degC)`))+
-    geom_smooth()
   
+  #pivot the data to long because I couldn't make nice graphs when it was wide
+  nairn2_long <- pivot_longer(nairn2, cols = `tmax (degC)`:`sun (hours)`,
+                              names_to = "weather",
+                              values_to = "readings")
+  #make series of graphs
+  ggplot (nairn2_long, aes(x= date, y = readings))+
+    geom_smooth()+
+    
+    #present graphs using appropriate scales for changes to be seen
+    facet_wrap(vars(weather), scales = "free")
+      
+   
