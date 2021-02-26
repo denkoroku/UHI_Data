@@ -1,6 +1,8 @@
 library(ggplot2)
 
-ggplot(diamonds, aes(x = carat, y = price, colour = cut, label = )) + 
+#after reading we were allowed to add things in aes() I snuck in a size change
+#the size change adds nothing but makes the plot even harder to interpret
+ggplot(diamonds, aes(x = carat, y = price, colour = cut, size = cut)) + 
   geom_point()+ 
   
   #reverse the y axis 
@@ -10,12 +12,18 @@ ggplot(diamonds, aes(x = carat, y = price, colour = cut, label = )) +
   xlim(0,100)+
   
   #change the colours to make them nearly all the same
-  scale_color_manual(values=c("deeppink", "deeppink2", "deeppink3","deeppink4","hotpink"))+
+  scale_color_manual(values=c("deeppink",
+                              "deeppink2",
+                              "deeppink3",
+                              "deeppink4",
+                              "hotpink"))+
   
   theme(
     #make the legend background and text colours too hard to read
     #make legend too big and position the it over the graph
-    legend.background = element_rect(fill = "black", size = 60, colour = "gray10"),
+    legend.background = element_rect(fill = "black",
+                                     size = 60,
+                                     colour = "gray10"),
     legend.justification = c(2, 2),
     legend.position = c(0.5, 1),
     
@@ -40,7 +48,10 @@ ggplot(diamonds, aes(x = carat, y = price, colour = cut, label = )) +
                              angle = -180,
                              face = "italic",
                              family = "Times",
-                             size = 50 )
+                             size = 90 ),
+    
+    #the y axis was still legible so rotate it 
+    axis.text.y = element_text(angle = -90 )
 )
   
  
