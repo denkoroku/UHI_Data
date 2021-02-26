@@ -1,6 +1,6 @@
 library(ggplot2)
 
-ggplot(diamonds, aes(x = carat, y = price, colour = cut)) + 
+ggplot(diamonds, aes(x = carat, y = price, colour = cut, label = )) + 
   geom_point()+ 
   
   #reverse the y axis 
@@ -10,7 +10,7 @@ ggplot(diamonds, aes(x = carat, y = price, colour = cut)) +
   xlim(0,100)+
   
   #change the colours to make them nearly all the same
-  scale_color_manual(values=c("deeppink", "deeppink4", "deeppink3","deeppink2","deeppink4"))+
+  scale_color_manual(values=c("deeppink", "deeppink2", "deeppink3","deeppink4","hotpink"))+
   
   theme(
     #make the legend background and text colours too hard to read
@@ -35,7 +35,6 @@ ggplot(diamonds, aes(x = carat, y = price, colour = cut)) +
     #make the axis ticks so wide they are useless
     axis.ticks = element_line(size = 40),
     
-    
     #make the font TNR, italic, really big and upsidedown
     axis.text = element_text(colour = "azure2",
                              angle = -180,
@@ -43,4 +42,6 @@ ggplot(diamonds, aes(x = carat, y = price, colour = cut)) +
                              family = "Times",
                              size = 50 )
 )
+  
+ 
 
