@@ -133,6 +133,8 @@ library (ggplot2)
       return(TRUE)
     }
   }
+  
+  sum_100_primes = function(nums){
   primes_count = 0
   i = 1
   total = 0
@@ -144,7 +146,7 @@ library (ggplot2)
     }
     i = i + 1
   }
-  
+}
   #How do you know you’ll be finished?
   #I googled what is the sum of the first 100 prime numbers- my answer was correct
   
