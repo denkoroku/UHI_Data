@@ -123,35 +123,41 @@ library (ggplot2)
   #get some numbers
   my_nums = c(1:1000)
   
-  #Find prime numbers 
-  is_prime = function(num) {
-    if (num == 2) {
-      return(TRUE)
-    } else if (any(num %% 2:(num-1) == 0)){
-      return(FALSE)
-    } else { 
-      return(TRUE)
+  sum_100_primes = function(nums){
+    #Function to find prime numbers 
+    is_prime = function(num) {
+      
+      #2 is a special case and is prime
+      if (num == 2) {
+        return(TRUE)
+        
+      #if divisible by a number its not prime
+      } else if (any(num %% 2:(num-1) == 0)){
+        return(FALSE)
+        
+      #it must be prime
+      } else { 
+        return(TRUE)
+      }
     }
+
+    #set counters to initial values
+    primes_count = 0
+    i = 1
+    total = 0
+  
+    #make the while loop until there are 100 prime numbers
+    while (primes_count < 100){
+      if(is_prime(nums[i])){
+        total = total + nums[i]
+        primes_count = primes_count + 1
+      }
+      i = i + 1
+    }
+    return(total)
   }
   
-  sum_100_primes = function(nums){
-  primes_count = 0
-  i = 1
-  total = 0
-  while (count < 100){
-    if(is_prime(my_nums[i])){
-      total = total + my_nums[i]
-      primes_count = primes_count + 1
-      print(total)
-    }
-    i = i + 1
-  }
-}
+  sum_100_primes(my_nums)
   #How do you know you’ll be finished?
   #I googled what is the sum of the first 100 prime numbers- my answer was correct
   
-  #Exercise 3 - Optional/Extension Questions
-#Compare the performance of vectorised summation vs using a for() loop for vectors of length 1 thousand, 10 thousand and 100 thousand. Hint: Use system.time().
-#Using a loop create the first 10 numbers in the Fibonnaci sequence. The sequence starts 0, 1 and then successive terms are constructed by adding the previous two terms together.
-#Using the sequence you created in Q2, find the ratio of successive terms as the sequence increases. This should tend to the “divine ratio” or ϕ=1.618.
-#Can you use a for loop to create a clock to print out the time every second for a minute using Sys.time()? Hint: Sys.sleep() might be very helpful.
