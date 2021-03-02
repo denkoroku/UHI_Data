@@ -1,4 +1,13 @@
+library(stringr)
+
+#to get a nice dataset to work with
+library (ggplot2)
+
 #Exercise 1.
+
+  my_df = (diamonds)
+  my_list = as.list(diamonds)
+  my_vector = c(1:12)
 
 #Test whether a vector has more that 10 entries.
 number_of_entries = function(vector){
@@ -15,21 +24,69 @@ number_of_entries = function(vector){
 number_of_entries(c(1:20))
 
 #What happens when you give it a data frame?
+number_of_entries(diamonds)
 #it returns the number of columns
 
-number_of_entries(diamonds)
 
 
+  #Test whether something is a data frame. 
 
+  test_is_dataframe = function(item){
+    if(is.data.frame(item)){
+      print("Item is a data frame")
+      return(TRUE)
+    }
+    else {
+      print("item is not a data frame")
+      return(FALSE)
+    }
+  }
 
-  #Test whether something is a data frame. What happens when you give it a list?
-  #Test whether something is a vector or a data frame. If it is a vector find its length. If it is a data frame find the number of rows and columns. What should you do if it is a list?
- #Exercise 2
-#Write for loops to complete the following.
+  test_is_dataframe(my_df)
+  
+  #What happens when you give it a list?
+  test_is_dataframe(my_list)
+  #it prints "item is not a data frame"
+  
+  test_is_dataframe(my_vector)
 
-#Loop through a vector and print out the cumulative total as you are going through.
-#Create a for loop that adds two vectors (of the same length) together.
-#Challenge: This is optional and difficult. Instead of using a for loop, use a while loop to create a vector (remember you can append values) of the first 100 prime numbers. How do you know you’ll be finished?
+  
+  
+  find_datatype = function(item){
+    #Test whether something is a vector, a data frame or a list
+    if(is.data.frame(item)){
+      #If it is a data frame find the number of rows and columns
+      rows = nrow(item)
+      columns = ncol(item)
+      str_glue("Item is a data frame with {rows} rows and {columns} columns")
+    }
+    #dealing with lists
+    else if(is.list(item)){
+      list_length = length(item)
+      str_glue("Item is a list of length {list_length}")
+    }
+    
+    #If it is a vector find its length
+    else if(is.vector(item)){
+        vector_length = length(item)
+        str_glue("Item is a vector of length {vector_length}")
+    }
+    
+    else{
+      print("item is not a data frame, list or vector")
+    }
+  }
+  
+  find_datatype(my_vector)
+  find_datatype(my_list)
+  find_datatype(my_df)
+  
+
+#Exercise 2
+
+  #Loop through a vector and print out the cumulative total as you are going through.
+  #Create a for loop that adds two vectors (of the same length) together.
+  #Challenge: This is optional and difficult. Instead of using a for loop, use a while loop to create a vector (remember you can append values) of the first 100 prime numbers. How do you know you’ll be finished?
   
   #Exercise 3 - Optional/Extension Questions
 #Compare the performance of vectorised summation vs using a for() loop for vectors of length 1 thousand, 10 thousand and 100 thousand. Hint: Use system.time().
