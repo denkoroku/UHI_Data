@@ -118,7 +118,35 @@ library (ggplot2)
   add_vectors(c(1:10),c(11:20))
   
   
-  #Challenge: This is optional and difficult. Instead of using a for loop, use a while loop to create a vector (remember you can append values) of the first 100 prime numbers. How do you know you’ll be finished?
+#Challenge: use a while loop to create a vector of the first 100 prime numbers.
+  
+  #get some numbers
+  my_nums = c(1:1000)
+  
+  #Find prime numbers 
+  is_prime = function(num) {
+    if (num == 2) {
+      return(TRUE)
+    } else if (any(num %% 2:(num-1) == 0)){
+      return(FALSE)
+    } else { 
+      return(TRUE)
+    }
+  }
+  primes_count = 0
+  i = 1
+  total = 0
+  while (count < 100){
+    if(is_prime(my_nums[i])){
+      total = total + my_nums[i]
+      primes_count = primes_count + 1
+      print(total)
+    }
+    i = i + 1
+  }
+  
+  #How do you know you’ll be finished?
+  #I googled what is the sum of the first 100 prime numbers- my answer was correct
   
   #Exercise 3 - Optional/Extension Questions
 #Compare the performance of vectorised summation vs using a for() loop for vectors of length 1 thousand, 10 thousand and 100 thousand. Hint: Use system.time().
