@@ -115,7 +115,7 @@ library (ggplot2)
     }
   }
   
-  add_vectors(c(1:10),c(11:20))
+  add_vectors(c(1:10), c(11:20))
   
   
 #Challenge: use a while loop to create a vector of the first 100 prime numbers.
@@ -124,6 +124,7 @@ library (ggplot2)
   my_nums = c(1:1000)
   
   sum_100_primes = function(nums){
+    
     #Function to find prime numbers 
     is_prime = function(num) {
       
