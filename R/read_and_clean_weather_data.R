@@ -2,7 +2,7 @@
 #Rewrite the reading in of the dataset and cleaning into a function that takes a filepath
 library(tidyverse)
 
-the_data = df[FALSE,]
+the_data
 #function to read in the data
 read_in_data = function(path_to_file){
   the_data <<- read_tsv(path_to_file)
@@ -29,10 +29,9 @@ clean_data = function(dataset){
     
   #change chr datatype columns to double
   mutate(across(where(is.character), as.numeric))
+  return(the_clean_data)
 }
 
-#testing
-read_in_data("data/nairn_raw.tsv")
-clean_data(the_data)
+
 
 

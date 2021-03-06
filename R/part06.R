@@ -50,14 +50,25 @@
 #Exercise 2
 #I can't see why the error check works in the second part but not in first :(
 
-#Exercise 3 - source files
-#Taking the work on reading in and cleaning weather data that we have already
-  #completed on the nairn_raw.tsv dataset in part 4 complete the following tasks.
+#Exercise 3 
+  #rewrite part04 reading in and cleaning data as functions
+  #Having tested them, put them it into a separate .R file and use source() to read it in.
+  source("R/read_and_clean_weather_data.R")
   
-#Rewrite the cleaning steps as a function (or functions)
-  #see read_and_clean_weather_data file
+  #testing with nairn data
+  read_in_data("data/nairn_raw.tsv")
+  clean_data(the_data)
   
- 
-#Having tested them, put them it into a separate .R file and use source() to read it in.
-#Apply the scripts to dunstaffnage_raw.tsv.
-#Do the functions work on both datasets? How about the other weather datasets?
+  #Apply the scripts to dunstaffnage_raw.tsv.
+  read_in_data("data/dunstaffnage_raw.tsv")
+  clean_data(the_data)
+  
+  #Do the functions work on both datasets?
+  # yes
+  
+  #How about the other weather datasets?
+  # it is only good for .tsv files 
+  # stornoway and tiree have problems
+  read_in_data("data/tiree_raw.tsv")
+  clean_data(the_data)
+  
