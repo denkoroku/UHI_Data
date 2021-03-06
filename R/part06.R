@@ -1,15 +1,22 @@
 ##Exercise 1
   #Write a function that takes in two vectors and subtracts the first from the second.
   vector_subtract = function(vector1, vector2){
-    answer = vector1 - vector2
-    return(answer)
+    if(!is.vector(vector1) || !is.vector(vector2)){
+      stop("You need to enter two vectors")
+    }
+    else{
+      answer = vector1 - vector2
+      return(answer)
+    }
   }
   
   #making vectors to check it works
   vec2 = seq(from = 1, to = 5, by = 2)
   vec1 = seq(from = 7, to = 11, by = 2)
+  test3 = "This is a random sentence"
   
   vector_subtract(vec1,vec2)
+  vector_subtract(vec1,test3)
 
   #A function that takes in a vector of characters and sticks them together 
   make_word_or_sentence = function(vector, word_or_sentence){
@@ -40,16 +47,17 @@
   make_word_or_sentence(my_words, "banana")
 
 
-
-
 #Exercise 2
-#Rewrite the functions from Exercise 1 to include checks (and either errors or warnings) for the inputs. These checks do not need to be comprehensive, it is just to get used to the idea of checking inputs/providing warnings - which is important if you end up writing code for others to use.
+#I can't see why the error check works in the second part but not in first :(
 
 #Exercise 3 - source files
-#Taking the work on reading in and cleaning weather data that we have already completed on the nairn_raw.tsv dataset in part 4 complete the following tasks. This is where we start to really use functions by taking something that worked on one dataset and applying it to a nearly identically formed one.
-
+#Taking the work on reading in and cleaning weather data that we have already
+  #completed on the nairn_raw.tsv dataset in part 4 complete the following tasks.
+  
 #Rewrite the cleaning steps as a function (or functions)
-  #Rewrite the reading in of the dataset and cleaning into a function that takes a filepath
+  #see read_and_clean_weather_data file
+  
+ 
 #Having tested them, put them it into a separate .R file and use source() to read it in.
 #Apply the scripts to dunstaffnage_raw.tsv.
 #Do the functions work on both datasets? How about the other weather datasets?
